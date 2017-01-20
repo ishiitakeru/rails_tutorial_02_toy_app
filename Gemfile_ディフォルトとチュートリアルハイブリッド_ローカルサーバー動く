@@ -1,9 +1,5 @@
 source 'https://rubygems.org'
 
-#railsチュートリアルに書いてある内容をそのままコピペするとローカルのrails serverコマンドが動かなくなる
-#ディフォルトのままだとherokuでデプロイ出来ない
-#基本的にはディフォルトにしておいて、一部変える
-
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
@@ -20,7 +16,6 @@ gem 'turbolinks',   '~> 5'
 gem 'jbuilder',     '~> 2.5'
 
 group :development, :test do
-  #SQLiteはherokuで利用できないのでテスト環境限定の指定に入れる
   gem 'sqlite3'
   gem 'byebug', platform: :mri
 end
@@ -32,7 +27,6 @@ group :development do
   gem 'spring-watcher-listen', '2.0.0'
 end
 
-#heroku環境は本番扱いなのでここに書く。PostgreSQLを使う指定とする。
 group :production do
   gem 'pg', '0.18.4'
 end
